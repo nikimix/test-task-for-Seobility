@@ -8,6 +8,7 @@ const slides = makeElement('div', { name: 'Slides', className: 'slides' });
 
 const slide1 = makeElement<HTMLImageElement>('img', { name: 'Slide1', className: 'slides__slide-1' });
 const slide2 = makeElement<HTMLImageElement>('img', { name: 'Slide2', className: 'slides__slide-2' });
+
 slide1.src = './assets/img/slide1.png';
 slide2.src = './assets/img/slide2.png';
 
@@ -17,15 +18,15 @@ slider.appendChild(slides);
 
 laptopContainer.appendChild(slider);
 
-function onUpScroll() {
+function onUpScroll(): void {
   slides.style.transform = 'translateX(-750px)';
 }
 
-function onDownScroll() {
+function onDownScroll(): void {
   slides.style.transform = 'translateX(0)';
 }
 
-function scrollSlides(evt: WheelEvent) {
+function scrollSlides(evt: WheelEvent): void {
   if (evt.deltaY > 0) {
     onUpScroll();
   } else {
@@ -33,14 +34,15 @@ function scrollSlides(evt: WheelEvent) {
   }
 }
 
-function blockScroll() {
+function blockScroll(): void {
   window.removeEventListener('wheel', scrollSlides);
 }
 
-function activeScroll() {
+function activeScroll(): void {
   window.addEventListener('wheel', scrollSlides);
 }
 
-window.addEventListener('transitionstart', blockScroll);
-window.addEventListener('transitionend', activeScroll);
+slides.addEventListener('transitionstart', blockScroll);
+slides.addEventListener('transitionend', activeScroll);
+
 window.addEventListener('wheel', scrollSlides);

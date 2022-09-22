@@ -8,4 +8,3 @@ document.body.appendChild(root);
 
 
 root.append(mainTitle, laptopContainer);
-
