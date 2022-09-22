@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "module": "es6",
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "noImplicitOverride": true,
+    "noImplicitThis": true,
+    "strict": true
+  },
+  "include": ["src/**/*.*"]
+}

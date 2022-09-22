@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "plugin:import/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-typescript/base",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": 1
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}
