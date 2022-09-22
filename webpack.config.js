@@ -55,7 +55,7 @@ module.exports = () => {
     config.devServer = {
       open: true,
       static: {
-        directory: 'dist',
+        directory: 'src',
         watch: true,
       },
     };

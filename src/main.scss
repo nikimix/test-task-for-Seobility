@@ -1,3 +1,51 @@
-h1 {
-  color: red;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.root {
+  position: relative;
+  display: grid;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1440px;
+  background-color: #8DBDBA;
+}
+
+.main-title {
+  margin-top: 100px;
+  margin-left: 100px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 60px;
+  font-style: normal;
+  color: #F5F5F5;
+}
+
+.laptop-container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 142px;
+  right: 82px;
+  padding-top: 14px;
+  width: 1018px;
+  height: 576px;
+  background-image: url('./assets/img/laptop.png');
+  background-repeat: no-repeat;
+}
+
+.slider {
+  margin: 0 auto;
+  width: 742px;
+  height: 497px;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition-property: transform;
+  transition-duration: .35s;
+  transition-timing-function: ease-out;
 }
