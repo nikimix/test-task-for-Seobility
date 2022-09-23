@@ -1,7 +1,4 @@
-export const elMap: Map<string, HTMLElement> = new Map();
-
 interface Conf {
-  name: string,
   content?: string,
   className?: string,
   attribute?: Attribute[] | Attribute
@@ -12,12 +9,8 @@ interface Attribute {
   value: string
 }
 
-function setElement(commponentName: string, el: HTMLElement): void {
-  elMap.set(commponentName, el);
-}
-
 export function makeElement<T extends HTMLElement = HTMLElement>(tagName: keyof HTMLElementTagNameMap, conf: Conf): T {
-  const { name, content, className, attribute } = conf;
+  const { content, className, attribute } = conf;
   const el = <T>document.createElement(tagName);
 
   if (className) {
@@ -25,7 +18,7 @@ export function makeElement<T extends HTMLElement = HTMLElement>(tagName: keyof 
   }
 
   if (content) {
-    el.textContent = content;
+    el.innerHTML = content;
   }
 
   if (Array.isArray(attribute)) {
@@ -33,8 +26,6 @@ export function makeElement<T extends HTMLElement = HTMLElement>(tagName: keyof 
   } else if (attribute) {
     el.setAttribute(`${attribute.name}`, `${attribute.value}`);
   }
-
-  setElement(name, el);
   
   return el;
 }

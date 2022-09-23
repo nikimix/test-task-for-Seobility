@@ -1,13 +1,15 @@
+import { slideToNext, slideToPrev } from '../services/service';
 import { makeElement } from '../utils/element';
+import obseravble from '../utils/obseravble';
 
-export const laptopContainer = makeElement('div', { name: 'LaptopContainer', className: 'laptop-container' });
+export const laptopContainer = makeElement('div', { className: 'laptop-container' });
 
-const slider = makeElement('div', { name: 'Slider', className: 'slider' });
+const slider = makeElement('div', { className: 'slider' });
 
-const slides = makeElement('div', { name: 'Slides', className: 'slides' });
+const slides = makeElement('div', { className: 'slides' });
 
-const slide1 = makeElement<HTMLImageElement>('img', { name: 'Slide1', className: 'slides__slide-1' });
-const slide2 = makeElement<HTMLImageElement>('img', { name: 'Slide2', className: 'slides__slide-2' });
+const slide1 = makeElement<HTMLImageElement>('img', { className: 'slides__slide-1' });
+const slide2 = makeElement<HTMLImageElement>('img', { className: 'slides__slide-2' });
 
 slide1.src = './assets/img/slide1.png';
 slide2.src = './assets/img/slide2.png';
@@ -18,19 +20,19 @@ slider.appendChild(slides);
 
 laptopContainer.appendChild(slider);
 
-function onUpScroll(): void {
+function goToNextImg(): void {
   slides.style.transform = 'translateX(-750px)';
 }
 
-function onDownScroll(): void {
+function goToPrevImg(): void {
   slides.style.transform = 'translateX(0)';
 }
 
 function scrollSlides(evt: WheelEvent): void {
   if (evt.deltaY > 0) {
-    onUpScroll();
+    slideToNext();
   } else {
-    onDownScroll();
+    slideToPrev();
   }
 }
 
@@ -44,5 +46,8 @@ function activeScroll(): void {
 
 slides.addEventListener('transitionstart', blockScroll);
 slides.addEventListener('transitionend', activeScroll);
+
+obseravble.add('next-slide', goToNextImg);
+obseravble.add('prev-slide', goToPrevImg);
 
 window.addEventListener('wheel', scrollSlides);
