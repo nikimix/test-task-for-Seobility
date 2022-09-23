@@ -20,8 +20,6 @@ img {
 }
 
 .root {
-  position: relative;
-  display: grid;
   margin: 0 auto;
   width: 100%;
   height: 100%;
@@ -29,7 +27,15 @@ img {
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
   color: #F5F5F5;
+}
+
+.page-cases {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
   background-color: #8DBDBA;
+  transition: background-color 1.3s;
 }
 
 .main-title {
@@ -209,23 +215,23 @@ img {
 
 @keyframes bubbleUp {
   from {
-    transform: translateY(20px)
+    transform: translateY(20px);
   }
+
   to {
     transform: translateY(0px);
   }
 }
 
 .visible {
-  animation: bubbleUp;
+  animation-name: bubbleUp;
   animation-duration: 1s;
-  animation-timing-function: ease-out;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation-fill-mode: forwards;
   animation-direction: alternate;
-  opacity: 1;
 }
 
 .hidden {
-  transition: .3s;
+  transition: opacity .3s;
   opacity: 0;
 }

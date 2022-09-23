@@ -1,4 +1,4 @@
-import { slideToNext, slideToPrev } from '../services/service';
+import { scrollSlides } from '../services/service';
 import { makeElement } from '../utils/element';
 import obseravble from '../utils/obseravble';
 
@@ -28,14 +28,6 @@ function goToPrevImg(): void {
   slides.style.transform = 'translateX(0)';
 }
 
-function scrollSlides(evt: WheelEvent): void {
-  if (evt.deltaY > 0) {
-    slideToNext();
-  } else {
-    slideToPrev();
-  }
-}
-
 function blockScroll(): void {
   window.removeEventListener('wheel', scrollSlides);
 }
@@ -44,10 +36,9 @@ function activeScroll(): void {
   window.addEventListener('wheel', scrollSlides);
 }
 
+
 slides.addEventListener('transitionstart', blockScroll);
 slides.addEventListener('transitionend', activeScroll);
 
 obseravble.add('next-slide', goToNextImg);
 obseravble.add('prev-slide', goToPrevImg);
-
-window.addEventListener('wheel', scrollSlides);

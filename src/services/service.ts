@@ -47,3 +47,10 @@ export function slideToNext(): void {
   checkFirstLastSlide();
 }
 
+export function scrollSlides(evt: WheelEvent): void {
+  if (evt.deltaY > 0) {
+    slideToNext();
+  } else {
+    slideToPrev();
+  }
+}
