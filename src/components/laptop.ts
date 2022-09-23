@@ -1,4 +1,4 @@
-import { makeElement } from '../framework/element';
+import { makeElement } from '../utils/element';
 
 export const laptopContainer = makeElement('div', { name: 'LaptopContainer', className: 'laptop-container' });
 
