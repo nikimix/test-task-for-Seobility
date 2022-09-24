@@ -36,6 +36,9 @@ img {
   height: 100%;
   background-color: #8DBDBA;
   transition: background-color 1.3s;
+  transition-timing-function: ease-in-out;
+  overflow: hidden;
+  will-change: transform;
 }
 
 .main-title {
@@ -70,7 +73,7 @@ img {
 .slides {
   display: flex;
   transition-property: transform;
-  transition-duration: 1.3s;
+  transition-duration: 1s;
   transition-timing-function: ease-in-out;
 }
 
@@ -85,7 +88,7 @@ img {
   border: 0.5px solid rgba(64, 89, 80, 0.5);
   box-shadow: inset 0.860527px 0.860527px 0.860527px rgba(53, 74, 66, 0.2);
   backdrop-filter: blur(15px);
-  z-index: 2;
+  z-index: 3;
 }
 
 .cases__wrapper {
@@ -183,29 +186,84 @@ img {
   line-height: 18px;
 }
 
-.bubbles {
+.bubbles-container {
   position: absolute;
-  width: 100%;
+  width: 220%;
   height: 100%;
+  transition: transform 1s;
+  transition-timing-function: ease-in-out;
+  z-index: 2;
+}
+
+.bubble {
+  transition: .3s;
+  position: absolute;
+  border-radius: 100%;
+  backdrop-filter: blur(30px);
+  background-blend-mode: normal, normal, normal, multiply;
+}
+
+.bubble-1,
+.bubble-2,
+.bubble-3 {
+  background: linear-gradient(131.29deg, rgba(225, 255, 244, 0.3) 1.1%, rgba(20, 54, 41, 0) 108.32%),
+    radial-gradient(32.42% 32.42% at 46.83% 18.92%, rgba(255, 255, 255, 0.147) 0%, rgba(100, 117, 110, 0) 100%),
+    linear-gradient(0deg, rgba(68, 104, 90, 0.44), rgba(68, 104, 90, 0.44));
+  box-shadow: 8px 24px 60px rgba(21, 53, 30, 0.1), inset 2.29395px 2.29395px 2.29395px rgba(73, 100, 87, 0.05);
+}
+
+.bubble-4,
+.bubble-5,
+.bubble-6 {
+  background: linear-gradient(131.29deg, rgba(165, 185, 255, 0.24) 1.1%, rgba(119, 124, 138, 0) 108.32%),
+    radial-gradient(32.42% 32.42% at 46.83% 18.92%, rgba(255, 255, 255, 0.147) 0%, rgba(62, 75, 119, 0) 100%),
+    linear-gradient(0deg, rgba(141, 104, 177, 0.4), rgba(141, 104, 177, 0.4));
+  box-shadow: 29px 54px 56px rgba(36, 52, 102, 0.25), inset 2.29395px 2.29395px 2.29395px rgba(84, 101, 157, 0.1);
 }
 
 .bubble-1 {
-  position: absolute;
   left: 272.25px;
   top: -2.75px;
   width: 282px;
   height: 282px;
-  border-radius: 100%;
-  background-image: linear-gradient(131.29deg, rgba(225, 255, 244, 0.3) 1.1%, rgba(20, 54, 41, 0) 108.32%),
-    radial-gradient(32.42% 32.42% at 46.83% 18.92%, rgba(255, 255, 255, 0.147) 0%, rgba(100, 117, 110, 0) 100%),
-    linear-gradient(0deg, rgba(68, 104, 90, 0.44), rgba(68, 104, 90, 0.44));
-  background-blend-mode: normal, normal, normal, multiply;
-  box-shadow: 8px 24px 60px rgba(21, 53, 30, 0.1), inset 2.29395px 2.29395px 2.29395px rgba(73, 100, 87, 0.05);
-  backdrop-filter: blur(30px);
-  z-index: 2;
 }
 
-.bubble-1__img {
+.bubble-2 {
+  left: 30px;
+  bottom: 10px;
+  width: 223px;
+  height: 223px;
+}
+
+.bubble-3 {
+  left: 1100px;
+  bottom: -63px;
+  width: 330px;
+  height: 330px;
+}
+
+.bubble-4 {
+  right: 1211px;
+  top: -153px;
+  width: 332px;
+  height: 332px;
+}
+
+.bubble-5 {
+  right: 632px;
+  top: 29px;
+  width: 192px;
+  height: 192px;
+}
+
+.bubble-6 {
+  right: 14px;
+  bottom: 22px;
+  width: 316px;
+  height: 316px;
+}
+
+.bubble-img {
   width: 100%;
   height: 100%;
   @extend %bgImg;
@@ -213,25 +271,34 @@ img {
 }
 
 
-@keyframes bubbleUp {
+@keyframes surfacingText {
   from {
     transform: translateY(20px);
+    opacity: 0;
   }
 
   to {
     transform: translateY(0px);
+    opacity: 1;
   }
 }
 
 .visible {
-  animation-name: bubbleUp;
+  animation-name: surfacingText;
   animation-duration: 1s;
-  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.3);
   animation-fill-mode: forwards;
   animation-direction: alternate;
 }
 
+@keyframes hide {
+  to {
+    opacity: 0;
+  }
+}
+
 .hidden {
-  transition: opacity .3s;
-  opacity: 0;
+  animation-name: hide;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
 }

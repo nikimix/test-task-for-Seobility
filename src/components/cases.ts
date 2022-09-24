@@ -107,7 +107,9 @@ function toggleVisibility(): void {
   });
 }
 
-function updateData(): void {
+function updateData(evt: AnimationEvent): void {
+  if (evt.animationName !== 'hide') return;
+  
   title.innerHTML = `${data[state.currentSlide]['cases-title']}`;
   description.innerHTML = `${data[state.currentSlide]['cases-description']}`;
   table.querySelectorAll('.feature__text').forEach((e, i) => {
@@ -122,7 +124,7 @@ function update(): void {
 
 // add event handlers
 btnContainer.addEventListener('click', onBtnClick);
-casesContainer.addEventListener('transitionend', updateData);
+casesContainer.addEventListener('animationend', updateData);
 
 obseravble.add('disable-handlers-on-prev-slide', disablePrevBtn);
 obseravble.add('disable-handlers-on-next-slide', disableNextBtn);
