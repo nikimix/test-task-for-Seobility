@@ -122,6 +122,7 @@ function update(): void {
 
 // add event handlers
 btnContainer.addEventListener('click', onBtnClick);
+
 casesContainer.addEventListener('animationend', updateData);
 
 btnNext.addEventListener('mouseover', changeCursor);

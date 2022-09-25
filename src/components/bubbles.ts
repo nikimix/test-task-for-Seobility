@@ -2,6 +2,7 @@ import { makeElement } from '../utils/element';
 import obseravble from '../utils/obseravble';
 import { page } from './page';
 
+// create elements
 export const bubblesContainer = makeElement('div', { className: 'bubbles-container' });
 
 bubblesContainer.innerHTML = `<div class="bubble-1 bubble">
@@ -24,7 +25,10 @@ bubblesContainer.innerHTML = `<div class="bubble-1 bubble">
     </div>
     `;
 
+
+// functions event handlers
 const bubbles = bubblesContainer.querySelectorAll('.bubble');
+
 function goToNextSlideBubbles(): void {
   bubblesContainer.style.transform = 'translateX(-54.5%)';
 }
@@ -33,7 +37,7 @@ function goToPrevSlideBubbles(): void {
   bubblesContainer.style.transform = 'translateX(0)';
 }
 
-function parallaxEffect(evt: MouseEvent): void {
+function moveBubbles(evt: MouseEvent): void {
   const distanceToPageX = page.getBoundingClientRect().left;
   const distanceToPageY = page.getBoundingClientRect().top;
 
@@ -47,15 +51,17 @@ function parallaxEffect(evt: MouseEvent): void {
   });
 }
 
-function reset() {
-  bubbles.forEach((e) => {
+function setBubblesPosDefautlt(): void {
+  bubbles.forEach((e: Element) => {
     e.removeAttribute('style');
   });
 }
 
+
+// add event handlers
 document.addEventListener('DOMContentLoaded', () => {
-  page.addEventListener('mousemove', parallaxEffect);
-  page.addEventListener('mouseout', reset);
+  page.addEventListener('mousemove', moveBubbles);
+  page.addEventListener('mouseout', setBubblesPosDefautlt);
 });
 
 obseravble.add('next-slide', goToNextSlideBubbles);

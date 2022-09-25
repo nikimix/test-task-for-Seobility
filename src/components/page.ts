@@ -14,11 +14,12 @@ export const page = makeElement('div', { className: 'page-cases' });
 
 page.append(bubblesContainer, mainTitle, laptopContainer, casesContainer, cursor);
 
-window.addEventListener('wheel', scrollSlides);
-
 function changeBackgroundColor() {
   page.style.backgroundColor = `${data[state.currentSlide].background}`;
 }
+
+
+window.addEventListener('wheel', scrollSlides);
 
 obseravble.add('next-slide', changeBackgroundColor);
 obseravble.add('prev-slide', changeBackgroundColor);
