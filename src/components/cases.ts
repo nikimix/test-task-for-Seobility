@@ -3,6 +3,7 @@ import data from '../settings/data';
 
 import { slideToNext, slideToPrev, state } from '../services/service';
 import { makeElement } from '../utils/element';
+import { changeCursor } from './cursor';
 
 //create elements
 export const casesContainer = makeElement('div', { className: 'cases', attribute: { name: 'data', value: 'visible' } });
@@ -27,7 +28,6 @@ const btnPrev = makeElement<HTMLButtonElement>('button', {
   className: 'cases__btn-prev btn btn--disabled',
   attribute: [
     { name: 'data', value: 'prev' },
-    { name: 'disabled', value: '' },
   ],
 });
 
@@ -63,7 +63,9 @@ casesContainer.append(background, wrapper);
 // functions event handlers
 function onBtnClick(evt: Event): void {
   const el = evt.target;
+
   if (el instanceof HTMLButtonElement) {
+    if (el.className.includes('disabled')) return;
     if (el.getAttribute('data') == 'next') {
       slideToNext();
     } else {
@@ -73,22 +75,18 @@ function onBtnClick(evt: Event): void {
 }
 
 function disablePrevBtn(): void {
-  btnPrev.setAttribute('disabled', '');
   btnPrev.classList.add('btn--disabled');
 }
 
 function disableNextBtn(): void {
-  btnNext.setAttribute('disabled', '');
   btnNext.classList.add('btn--disabled');
 }
 
 function activePrevBtn(): void {
-  btnPrev.removeAttribute('disabled');
   btnPrev.classList.remove('btn--disabled');
 }
 
 function activeNextBtn(): void {
-  btnNext.removeAttribute('disabled');
   btnNext.classList.remove('btn--disabled');
 }
 
@@ -109,7 +107,7 @@ function toggleVisibility(): void {
 
 function updateData(evt: AnimationEvent): void {
   if (evt.animationName !== 'hide') return;
-  
+
   title.innerHTML = `${data[state.currentSlide]['cases-title']}`;
   description.innerHTML = `${data[state.currentSlide]['cases-description']}`;
   table.querySelectorAll('.feature__text').forEach((e, i) => {
@@ -125,6 +123,11 @@ function update(): void {
 // add event handlers
 btnContainer.addEventListener('click', onBtnClick);
 casesContainer.addEventListener('animationend', updateData);
+
+btnNext.addEventListener('mouseover', changeCursor);
+btnNext.addEventListener('mouseout', changeCursor);
+btnPrev.addEventListener('mouseover', changeCursor);
+btnPrev.addEventListener('mouseout', changeCursor);
 
 obseravble.add('disable-handlers-on-prev-slide', disablePrevBtn);
 obseravble.add('disable-handlers-on-next-slide', disableNextBtn);

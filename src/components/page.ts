@@ -8,10 +8,11 @@ import { mainTitle } from './title';
 import { laptopContainer } from './laptop';
 import { casesContainer } from './cases';
 import { bubblesContainer } from './bubbles';
+import { cursor } from './cursor';
 
 export const page = makeElement('div', { className: 'page-cases' });
 
-page.append(bubblesContainer, mainTitle, laptopContainer, casesContainer);
+page.append(bubblesContainer, mainTitle, laptopContainer, casesContainer, cursor);
 
 window.addEventListener('wheel', scrollSlides);
 

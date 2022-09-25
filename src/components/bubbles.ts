@@ -43,7 +43,7 @@ function parallaxEffect(evt: MouseEvent): void {
   bubbles.forEach((e) => {
     const x = (coordX * .15).toFixed(2);
     const y = (coordY * .15).toFixed(2);
-    e.setAttribute('style', `transform: translate(${-x}px, ${-y}px); transition: none;`);
+    e.setAttribute('style', `transform: translate3d(${-x}px, ${-y}px, 0); transition: none;`);
   });
 }
 
